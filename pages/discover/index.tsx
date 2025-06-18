@@ -1,37 +1,37 @@
+import BookList from "@book-tracker/components/book-list/book-list";
 import { Book } from "@book-tracker/shared/book";
-import Image from "next/image";
 
 function DiscoverPage({ books }: { books: Book[] }) {
   return (
-    <div>
-      <h1>Discover</h1>
-      <p>Explore new content and features.</p>
+    <div className="container">
+      <div className="wrapper">
+        <h2>Featured Books</h2>
+        <p>
+          Explore our curated selection of books. Click on a book to view
+          details or add it to your wishlist.
+        </p>
 
-      <ul>
-        {books.map((book) => (
-          <li key={book.id}>
-            <h2>{book.title}</h2>
-            <p>Author: {book.author}</p>
-            <p>ISBN: {book.isbn}</p>
-            <p>Publication Year: {book.publicationYear}</p>
-            <p>Genre: {book.genre}</p>
-            <Image src={book.image} alt={book.title} width="400" height="300" />
-            <p>Description: {book.description}</p>
-          </li>
-        ))}
-      </ul>
+        <BookList books={books} />
+      </div>
     </div>
   );
 }
 export default DiscoverPage;
 
 export async function getStaticProps() {
-  const respone = await fetch(`${process.env.PUBLIC_API_URL}/books`);
+  const respone = await fetch(`${process.env.PUBLIC_API_URL}/books/discover`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
   const books: Book[] = await respone.json();
 
   return {
     props: {
       books,
     },
+    revalidate: 60, // Revalidate every 60 seconds
   };
 }

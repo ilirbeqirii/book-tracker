@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Ilir",
+    "email": "ilir.beqiri@avenga.com",
+    "inquiryType": "general",
+    "subject": "Demo Request",
+    "message": "I want to see a demo of the application"
+  },
+  {
+    "name": "Dan",
+    "email": "dan.abramov@me.com",
+    "message": "RSC Progressive JSON",
+    "inquiryType": "feature",
+    "subject": "Progressive JSON"
+  }
+]

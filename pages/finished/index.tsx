@@ -1,29 +1,19 @@
+import BookList from "@book-tracker/components/book-list/book-list";
 import { Book } from "@book-tracker/shared/book";
-import Image from "next/image";
 
 function FinishedBooksPage({ finishedBooks }: { finishedBooks: Book[] }) {
   return (
-    <div>
-      <h1>Finished Books</h1>
-      <p>This page will display a list of books that have been finished.</p>
+    <div className="container">
+      <div className="wrapper">
+        <h2>Finished Books</h2>
 
-      {finishedBooks.length === 0 ? (
-        <p>No finished books available.</p>
-      ) : (
-        <ul>
-          {finishedBooks.map((book) => (
-            <li key={book.id}>
-              <h2>{book.title}</h2>
-              <p>Author: {book.author}</p>
-              <p>ISBN: {book.isbn}</p>
-              <p>Genre: {book.genre}</p>
-              <p>Publication Year: {book.publicationYear}</p>
-              <p>Description: {book.description}</p>
-              {book.image && <Image src={book.image} alt={book.title} />}
-            </li>
-          ))}
-        </ul>
-      )}
+        <p>
+          Here you can find a list of books that you have finished reading.
+          Click on a book to view its details or share your thoughts.
+        </p>
+
+        <BookList books={finishedBooks} />
+      </div>
     </div>
   );
 }
@@ -40,5 +30,6 @@ export async function getStaticProps() {
 
   return {
     props: { finishedBooks },
+    revalidate: 60, // Revalidate every 60 seconds
   };
 }

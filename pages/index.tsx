@@ -1,25 +1,30 @@
+import AvailableBooksWidget from "@book-tracker/components/dashboard/available-books";
+import CompletedBooksWidget from "@book-tracker/components/dashboard/completed-books";
+import MyBooksWidget from "@book-tracker/components/dashboard/my-books";
 import { GroupedBooks } from "@book-tracker/shared/grouped-books";
-import Head from "next/head";
 
-
-export default function Home({ dashboardData }: { dashboardData: GroupedBooks }) {
+export default function Home({
+  dashboardData,
+}: {
+  dashboardData: GroupedBooks;
+}) {
   const { books, ownedBooks, completedBooks } = dashboardData;
 
   return (
-    <>
-      <Head>
-        <title>Book Tracker</title>
-        <meta name="description" content="Book management app that helps you keep track of your books" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div>
-        <h1>Book Tracker</h1>
-        <div>Available Books {books.length}</div>
-        <div>My Books {ownedBooks.length}</div>
-        <div>Completed Books {completedBooks.length}</div>
+    <div className="container">
+      <div className="wrapper">
+        <h2>Dashboard</h2>
+        <p>
+          Here you can find an overview of your book collection, including the
+          books you own, those you have completed, and those you wish to read in
+          the future.
+        </p>
+
+        <AvailableBooksWidget books={books} />
+        <MyBooksWidget books={ownedBooks} />
+        <CompletedBooksWidget books={completedBooks} />
       </div>
-    </>
+    </div>
   );
 }
 
@@ -27,12 +32,10 @@ export async function getStaticProps() {
   const response = await fetch(`${process.env.PUBLIC_API_URL}/dashboard`);
   const data = await response.json();
 
-  console.log(data);
-
   return {
     props: {
-      dashboardData: data
+      dashboardData: data,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }

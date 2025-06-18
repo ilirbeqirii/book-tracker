@@ -1,0 +1,9 @@
+.container-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper-limited {
+  max-width: 600px;
+}

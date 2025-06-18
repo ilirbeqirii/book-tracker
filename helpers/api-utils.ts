@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs/promises";
 import { Book } from "@book-tracker/shared/book";
 import { GroupedBooks } from "@book-tracker/shared/grouped-books";
+import { ContactData } from "@book-tracker/shared/contact";
 
 const dataFilePath = path.join(process.cwd(), "pages", "api", "data.json");
 
@@ -45,19 +46,24 @@ export async function deleteBook(id: number) {
     throw new Error(`Book with id ${id} not found`);
   }
 
-  const [removedBook] = books.splice(bookIndex, 1);
+  books[bookIndex].deleted = true;
   await writeData(books);
-  return removedBook;
+  return books[bookIndex];
 }
 
 export async function getGroupedBooks() {
   const books = await getAllBooks();
   const groupedBooks: GroupedBooks = {
     books: books.filter(
-      (book) => !book.wishlist && !book.owned && !book.isRead && !book.completed
+      (book) =>
+        !book.wishlist &&
+        !book.owned &&
+        !book.isRead &&
+        !book.completed &&
+        !book.deleted
     ),
-    ownedBooks: books.filter((book) => book.owned),
-    completedBooks: books.filter((book) => book.isRead),
+    ownedBooks: books.filter((book) => book.owned && !book.deleted),
+    completedBooks: books.filter((book) => book.isRead && !book.deleted),
   };
 
   return groupedBooks;
@@ -65,22 +71,44 @@ export async function getGroupedBooks() {
 
 export async function getAvailableBooks(): Promise<Book[]> {
   const books = await getAllBooks();
-  return books.filter((book) => !book.wishlist && !book.owned && !book.isRead && !book.completed);
+  return books.filter(
+    (book) =>
+      !book.wishlist &&
+      !book.owned &&
+      !book.isRead &&
+      !book.completed &&
+      !book.deleted
+  );
 }
 
 export async function getWishlistBooks(): Promise<Book[]> {
   const books = await getAllBooks();
-  return books.filter((book) => book.wishlist);
+  return books.filter((book) => book.wishlist && !book.deleted);
 }
 
 export async function getOwnedBooks(): Promise<Book[]> {
   const books = await getAllBooks();
-  return books.filter((book) => book.owned);
+  return books.filter((book) => book.owned && !book.deleted);
 }
 
 export async function getFinishedBooks(): Promise<Book[]> {
   const books = await getAllBooks();
-  return books.filter((book) => book.isRead);
+  return books.filter((book) => book.isRead && !book.deleted);
+}
+
+export async function buyBook(id: number) {
+  const books = await getAllBooks();
+  const bookIndex = books.findIndex((book: Book) => book.id === id);
+  if (bookIndex === -1) {
+    throw new Error(`Book with id ${id} not found`);
+  }
+  books[bookIndex].owned = true;
+  books[bookIndex].wishlist = false;
+  books[bookIndex].isRead = false;
+  books[bookIndex].completed = false;
+
+  await writeData(books);
+  return books[bookIndex];
 }
 
 export async function markBookAsRead(id: number) {
@@ -134,4 +162,20 @@ export async function removeFromWishlist(id: number) {
   books[bookIndex].wishlist = false;
   await writeData(books);
   return books[bookIndex];
+}
+
+export async function saveContactData(data: ContactData) {
+  const filePath = path.join(
+    process.cwd(),
+    "pages",
+    "api",
+    "contact-data.json"
+  );
+  let existingData = [];
+
+  const fileContents = await fs.readFile(filePath, "utf-8");
+  existingData = JSON.parse(fileContents);
+
+  existingData.push(data);
+  await fs.writeFile(filePath, JSON.stringify(existingData, null, 2));
 }

@@ -1,32 +1,21 @@
+import BookList from "@book-tracker/components/book-list/book-list";
 import { Book } from "@book-tracker/shared/book";
-import Image from "next/image";
 
 function MyBooksPage({ myBooks }: { myBooks: Book[] }) {
-	return (
-		<div>
-			<h1>My Books</h1>
-			<p>Here you can see all the books you have bought.</p>
-			{myBooks.length === 0 ? (
-				<p>No books available.</p>
-			) : (
-				<ul>
-					{myBooks.map((book) => (
-						<li key={book.id}>
-							<h2>{book.title}</h2>
-							<p>Author: {book.author}</p>
-							<p>ISBN: {book.isbn}</p>
-							<p>Publication Year: {book.publicationYear}</p>
-							<p>Genre: {book.genre}</p>
-							{book.image && (
-								<Image src={book.image} alt={book.title} width="400" height="300" />
-							)}
-							<p>Description: {book.description}</p>
-						</li>
-					))}
-				</ul>
-			)}
-		</div>
-	);
+  return (
+    <div className="container">
+      <div className="wrapper">
+        <h2>My Books</h2>
+        <p>
+          Here you can find the list of the books that you have bought but not
+          yet finished reading. Click on a book to view its details or share
+          your thoughts.
+        </p>
+
+        <BookList books={myBooks} />
+      </div>
+    </div>
+  );
 }
 
 export default MyBooksPage;
@@ -40,6 +29,7 @@ export async function getStaticProps() {
   const myBooks = await response.json();
 
   return {
-    props: {myBooks},
+    props: { myBooks },
+    revalidate: 60, // Revalidate every 60 seconds
   };
 }

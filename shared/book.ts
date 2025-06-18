@@ -3,6 +3,7 @@ interface Base {
   completed: boolean;
   wishlist: boolean;
   owned: boolean;
+  deleted: boolean;
 }
 
 export interface Book extends Base {

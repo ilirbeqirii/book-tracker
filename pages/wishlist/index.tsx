@@ -1,29 +1,19 @@
+import BookList from "@book-tracker/components/book-list/book-list";
 import { Book } from "@book-tracker/shared/book";
-import Image from "next/image";
 
 function WishlistPage({ wishlist }: { wishlist: Book[] }) {
   return (
-    <div>
-      <h1>Wishlist</h1>
-      <p>This is your wishlist page.</p>
+    <div className="container">
+      <div className="wrapper">
+        <h2>Wishlist</h2>
 
-      {wishlist.length === 0 ? (
-        <p>Your wishlist is empty.</p>
-      ) : (
-        <ul>
-          {wishlist.map((book) => (
-            <li key={book.id}>
-              <h2>{book.title}</h2>
-              <p>Author: {book.author}</p>
-              <p>ISBN: {book.isbn}</p>
-              <p>Genre: {book.genre}</p>
-              <p>Publication Year: {book.publicationYear}</p>
-              <p>Description: {book.description}</p>
-              {book.image && <Image src={book.image} alt={book.title} />}
-            </li>
-          ))}
-        </ul>
-      )}
+        <p>
+          Here you can find a list of books that you wish to read in the future.
+          Click on a book to view its details or mark it as read.
+        </p>
+
+        <BookList books={wishlist} />
+      </div>
     </div>
   );
 }
@@ -40,5 +30,6 @@ export async function getStaticProps() {
 
   return {
     props: { wishlist },
+    revalidate: 60, // Revalidate every 60 seconds
   };
 }

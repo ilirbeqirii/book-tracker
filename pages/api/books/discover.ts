@@ -4,10 +4,23 @@ import {
   addBook,
   deleteBook,
   getAvailableBooks,
+  getBookById,
 } from "@book-tracker/helpers/api-utils";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
+    const { id } = req.query;
+    if (id && typeof id === "string") {
+      const book: Book = await getBookById(+id);
+      if (book) {
+        res.status(200).json(book);
+        return;
+      }
+
+      res.status(404).json({ error: "Book not found" });
+      return;
+    }
+
     res.status(200).json(await getAvailableBooks());
     return;
   }
@@ -30,6 +43,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       completed: false,
       wishlist: false,
       owned: false,
+      deleted: false,
     };
 
     const addedBook = await addBook(newBook);
@@ -38,11 +52,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "DELETE") {
-    const { id } = req.body;
+    const { id } = req.query;
 
-    const book: Book = await deleteBook(id);
-    res.status(200).json({ message: "Book removed", book });
-    return;
+    if (id && typeof id == "string") {
+      const book: Book = await deleteBook(+id);
+      res.status(200).json({ message: "Book removed successfully", book });
+      return;
+    } else {
+      res.status(400).json({ error: "Invalid book ID" });
+      return;
+    }
   }
 
   res.status(405).json({ error: "Method not allowed" });
