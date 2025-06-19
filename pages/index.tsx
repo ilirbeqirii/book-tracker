@@ -1,6 +1,7 @@
 import AvailableBooksWidget from "@book-tracker/components/dashboard/available-books";
 import CompletedBooksWidget from "@book-tracker/components/dashboard/completed-books";
 import MyBooksWidget from "@book-tracker/components/dashboard/my-books";
+import { getGroupedBooks } from "@book-tracker/helpers/api-utils";
 import { GroupedBooks } from "@book-tracker/shared/grouped-books";
 
 export default function Home({
@@ -29,8 +30,7 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const response = await fetch(`${process.env.PUBLIC_API_URL}/dashboard`);
-  const data = await response.json();
+  const data = await getGroupedBooks();
 
   return {
     props: {

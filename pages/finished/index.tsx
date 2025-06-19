@@ -1,4 +1,5 @@
 import BookList from "@book-tracker/components/book-list/book-list";
+import { getFinishedBooks } from "@book-tracker/helpers/api-utils";
 import { Book } from "@book-tracker/shared/book";
 
 function FinishedBooksPage({ finishedBooks }: { finishedBooks: Book[] }) {
@@ -21,12 +22,7 @@ function FinishedBooksPage({ finishedBooks }: { finishedBooks: Book[] }) {
 export default FinishedBooksPage;
 
 export async function getStaticProps() {
-  const response = await fetch(`${process.env.PUBLIC_API_URL}/books/finished`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
-
-  const finishedBooks = await response.json();
+  const finishedBooks = await getFinishedBooks();
 
   return {
     props: { finishedBooks },

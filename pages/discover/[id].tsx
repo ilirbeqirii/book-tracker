@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useToastNotification } from "@book-tracker/components/ui/toast-notification/toast-notification";
 import Modal from "@book-tracker/components/ui/modal/modal";
 import { useState } from "react";
+import { getAvailableBooks, getBookById } from "@book-tracker/helpers/api-utils";
 
 function BookDetailsPage({ bookDetails }: { bookDetails: Book }) {
   const router = useRouter();
@@ -109,17 +110,7 @@ export async function getStaticProps(context: {
   params: { id: string };
 }): Promise<{ props: { bookDetails: Book }; revalidate: number }> {
   const { id } = context.params;
-
-  const res = await fetch(
-    `${process.env.PUBLIC_API_URL}/books/discover?id=${id}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  const bookDetails: Book = await res.json();
+  const bookDetails: Book = await getBookById(+id);
 
   return {
     props: {
@@ -130,13 +121,7 @@ export async function getStaticProps(context: {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.PUBLIC_API_URL}/books/discover`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const books: Book[] = await res.json();
+  const books: Book[] = await getAvailableBooks();
   const paths = books.map((book) => ({
     params: { id: book.id.toString() },
   }));

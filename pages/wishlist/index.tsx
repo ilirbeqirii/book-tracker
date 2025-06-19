@@ -1,4 +1,5 @@
 import BookList from "@book-tracker/components/book-list/book-list";
+import { getWishlistBooks } from "@book-tracker/helpers/api-utils";
 import { Book } from "@book-tracker/shared/book";
 
 function WishlistPage({ wishlist }: { wishlist: Book[] }) {
@@ -21,12 +22,7 @@ function WishlistPage({ wishlist }: { wishlist: Book[] }) {
 export default WishlistPage;
 
 export async function getStaticProps() {
-  const response = await fetch(`${process.env.PUBLIC_API_URL}/books/wishlist`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
-
-  const wishlist = await response.json();
+  const wishlist = await getWishlistBooks();
 
   return {
     props: { wishlist },

@@ -1,4 +1,5 @@
 import BookList from "@book-tracker/components/book-list/book-list";
+import { getAvailableBooks } from "@book-tracker/helpers/api-utils";
 import { Book } from "@book-tracker/shared/book";
 
 function DiscoverPage({ books }: { books: Book[] }) {
@@ -19,14 +20,7 @@ function DiscoverPage({ books }: { books: Book[] }) {
 export default DiscoverPage;
 
 export async function getStaticProps() {
-  const respone = await fetch(`${process.env.PUBLIC_API_URL}/books/discover`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const books: Book[] = await respone.json();
+  const books: Book[] = await getAvailableBooks()
 
   return {
     props: {

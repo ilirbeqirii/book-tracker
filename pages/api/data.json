@@ -42,7 +42,7 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg",
     "description": "The Great Gatsby captures the glamour and disillusionment of the Jazz Age. Jay Gatsby, a mysterious millionaire, throws lavish parties in hopes of winning back his lost love, Daisy Buchanan. Narrated by Nick Carraway, the novel explores themes of wealth, love, and the American Dream. Fitzgerald's prose paints a vivid picture of 1920s society. The story is both romantic and tragic. It remains a timeless critique of ambition and excess.",
-    "deleted": true
+    "deleted": false
   },
   {
     "id": 4,
@@ -72,7 +72,7 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg",
     "description": "The Hobbit tells the tale of Bilbo Baggins, a reluctant adventurer swept into a quest for treasure. Alongside dwarves and the wizard Gandalf, Bilbo faces trolls, goblins, and a dragon named Smaug. Tolkien's world is rich with magic and wonder. The story explores themes of bravery, friendship, and self-discovery. Its lighthearted tone and imaginative setting have delighted readers of all ages. The novel is a cornerstone of modern fantasy.",
-    "deleted": true
+    "deleted": false
   },
   {
     "id": 6,
@@ -87,7 +87,7 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780316769488-L.jpg",
     "description": "The Catcher in the Rye follows Holden Caulfield, a disenchanted teenager wandering New York City. Struggling with alienation and loss, Holden seeks meaning in a world he finds phony. Salinger's novel captures the voice of adolescent angst and rebellion. The narrative is both humorous and poignant. Themes of innocence, identity, and belonging resonate throughout. The book remains a defining work of twentieth-century literature.",
-    "deleted": true
+    "deleted": false
   },
   {
     "id": 7,

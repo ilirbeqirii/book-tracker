@@ -1,4 +1,5 @@
 import BookList from "@book-tracker/components/book-list/book-list";
+import { getOwnedBooks } from "@book-tracker/helpers/api-utils";
 import { Book } from "@book-tracker/shared/book";
 
 function MyBooksPage({ myBooks }: { myBooks: Book[] }) {
@@ -21,12 +22,7 @@ function MyBooksPage({ myBooks }: { myBooks: Book[] }) {
 export default MyBooksPage;
 
 export async function getStaticProps() {
-  const response = await fetch(`${process.env.PUBLIC_API_URL}/books/owned`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
-
-  const myBooks = await response.json();
+  const myBooks = await getOwnedBooks();
 
   return {
     props: { myBooks },
