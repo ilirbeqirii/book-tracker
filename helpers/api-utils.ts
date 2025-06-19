@@ -4,7 +4,7 @@ import { Book } from "@book-tracker/shared/book";
 import { GroupedBooks } from "@book-tracker/shared/grouped-books";
 import { ContactData } from "@book-tracker/shared/contact";
 
-const dataFilePath = path.join("/tmp","data.json");
+const dataFilePath = path.join("/tmp/","data.json");
 
 async function readData(): Promise<Book[]> {
   const fileContents = await fs.readFile(dataFilePath, "utf-8");
