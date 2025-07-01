@@ -15,4 +15,5 @@ export interface Book extends Base {
   genre: string;
   image: string;
   description: string;
+  rating: number; // New property added
 }

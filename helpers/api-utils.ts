@@ -4,7 +4,7 @@ import { Book } from "@book-tracker/shared/book";
 import { GroupedBooks } from "@book-tracker/shared/grouped-books";
 import { ContactData } from "@book-tracker/shared/contact";
 
-const dataFilePath = "/tmp/pages/api/data.json)";
+const dataFilePath = path.join(process.cwd(), "pages", "api", "data.json");
 
 async function readData(): Promise<Book[]> {
   const fileContents = await fs.readFile(dataFilePath, "utf-8");
@@ -178,4 +178,18 @@ export async function saveContactData(data: ContactData) {
 
   existingData.push(data);
   await fs.writeFile(filePath, JSON.stringify(existingData, null, 2));
+}
+
+export async function updateRating(rating:number, id: number) {
+  const books = await readData();
+  const bookIndex = books.findIndex((book: Book) => book.id === id);
+
+  if (bookIndex === -1) {
+    throw new Error(`Book with id ${id} not found`);
+  }
+
+  books[bookIndex].rating = rating;
+  await writeData(books);
+  return books[bookIndex];
+  
 }

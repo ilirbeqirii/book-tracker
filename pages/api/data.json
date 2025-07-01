@@ -12,7 +12,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg",
     "description": "Set in the Deep South, this novel follows young Scout Finch as her father, Atticus, defends a black man falsely accused of a crime. Through Scout's eyes, the story explores themes of racial injustice, moral growth, and compassion. The small town of Maycomb is vividly depicted, with its prejudices and traditions. Harper Lee's classic is a profound commentary on humanity and empathy. The narrative blends innocence with the harsh realities of society. It remains a powerful tale of courage and conscience.",
-    "deleted": false
+    "deleted": false,
+    "rating": 5
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
     "owned": true,
     "image": "https://covers.openlibrary.org/b/isbn/9780451524935-L.jpg",
     "description": "1984 presents a chilling vision of a totalitarian regime where Big Brother watches every move. Winston Smith, the protagonist, struggles with oppression and seeks truth in a world of propaganda. The novel explores themes of surveillance, individuality, and freedom. Orwell's dystopia warns of the dangers of unchecked power. The story is both a political commentary and a psychological exploration. Its impact on culture and language endures to this day.",
-    "deleted": false
+    "deleted": false,
+    "rating": 4
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg",
     "description": "The Great Gatsby captures the glamour and disillusionment of the Jazz Age. Jay Gatsby, a mysterious millionaire, throws lavish parties in hopes of winning back his lost love, Daisy Buchanan. Narrated by Nick Carraway, the novel explores themes of wealth, love, and the American Dream. Fitzgerald's prose paints a vivid picture of 1920s society. The story is both romantic and tragic. It remains a timeless critique of ambition and excess.",
-    "deleted": false
+    "deleted": false,
+    "rating": 5
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780141439518-L.jpg",
     "description": "Pride and Prejudice follows the spirited Elizabeth Bennet as she navigates issues of class, marriage, and morality. Her encounters with the proud Mr. Darcy lead to misunderstandings and personal growth. Austen's wit and social commentary shine throughout the novel. The story explores the complexities of relationships and societal expectations. Its memorable characters and sharp dialogue have captivated readers for generations. The novel remains a beloved classic of English literature.",
-    "deleted": false
+    "deleted": false,
+    "rating": 4
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg",
     "description": "The Hobbit tells the tale of Bilbo Baggins, a reluctant adventurer swept into a quest for treasure. Alongside dwarves and the wizard Gandalf, Bilbo faces trolls, goblins, and a dragon named Smaug. Tolkien's world is rich with magic and wonder. The story explores themes of bravery, friendship, and self-discovery. Its lighthearted tone and imaginative setting have delighted readers of all ages. The novel is a cornerstone of modern fantasy.",
-    "deleted": false
+    "deleted": false,
+    "rating": 5
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780316769488-L.jpg",
     "description": "The Catcher in the Rye follows Holden Caulfield, a disenchanted teenager wandering New York City. Struggling with alienation and loss, Holden seeks meaning in a world he finds phony. Salinger's novel captures the voice of adolescent angst and rebellion. The narrative is both humorous and poignant. Themes of innocence, identity, and belonging resonate throughout. The book remains a defining work of twentieth-century literature.",
-    "deleted": false
+    "deleted": false,
+    "rating": 1
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9781503280786-L.jpg",
     "description": "Moby-Dick chronicles Captain Ahab's obsessive quest to hunt the elusive white whale. Narrated by Ishmael, the novel delves into themes of fate, obsession, and the human condition. Melville's work blends adventure with philosophical reflection. The story explores the dangers of vengeance and the mysteries of the sea. Its rich symbolism and complex characters have inspired generations. The novel is a monumental achievement in American literature.",
-    "deleted": false
+    "deleted": false,
+    "rating": 4
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780199232765-L.jpg",
     "description": "War and Peace is an epic tale set against the backdrop of Napoleonic Russia. It follows the lives of aristocratic families as they navigate love, loss, and war. Tolstoy weaves together personal stories with historical events. The novel explores themes of fate, free will, and the nature of history. Its sweeping narrative and deep character studies are unmatched. The book stands as one of literature's greatest achievements.",
-    "deleted": false
+    "deleted": false,
+    "rating": 5
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780061122415-L.jpg",
     "description": "The Alchemist follows Santiago, a young shepherd, on his journey to find a hidden treasure. Guided by dreams and omens, he learns about destiny and the importance of following one's heart. Coelho's novel is a philosophical fable about self-discovery. The story blends adventure with spiritual wisdom. Its simple prose and universal themes have inspired millions. The book encourages readers to pursue their personal legends.",
-    "deleted": false
+    "deleted": false,
+    "rating": 4
   },
   {
     "id": 10,
@@ -147,6 +156,7 @@
     "owned": false,
     "image": "https://covers.openlibrary.org/b/isbn/9780060850524-L.jpg",
     "description": "Brave New World envisions a future society driven by technology and control. Citizens are engineered for conformity and pleasure, but individuality is suppressed. The story follows Bernard Marx and others as they question the cost of utopia. Huxley's novel explores themes of freedom, happiness, and dehumanization. Its prophetic vision remains relevant in modern times. The book is a classic of dystopian literature.",
-    "deleted": false
+    "deleted": false,
+    "rating": 5
   }
 ]

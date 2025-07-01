@@ -11,6 +11,7 @@ function BookDetailsPage({ bookDetails }: { bookDetails: Book }) {
   const router = useRouter();
   const { showToast } = useToastNotification();
   const [modalState, setModalState] = useState({ message: "", title: "" });
+  const [rating, setRating] = useState(bookDetails.rating);
 
   const askForApproval = () => {
     setModalState({
@@ -49,6 +50,37 @@ function BookDetailsPage({ bookDetails }: { bookDetails: Book }) {
     }
   };
 
+  const handleRatingClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const bar = event.currentTarget;
+    const rect = bar.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const newRating = Math.ceil((clickX / rect.width) * 5);
+    setRating(newRating);
+
+    updateRatingOnServer(bookDetails.id, newRating);
+  };
+
+  const updateRatingOnServer = async (bookId: number, newRating: number) => {
+    try {
+      const response = await fetch(`/api/books/discover/?id=${bookId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ rating: newRating }),
+      });
+
+      if (!response.ok) {
+        showToast("Failed to update rating", "error");
+      } else {
+        const result = await response.json();
+        showToast(result.message, "success");
+      }
+    } catch {
+      showToast("Error updating rating:", "error");
+    }
+  };
+
   return (
     <div className="container">
       <div className={classes["book-details-section"]}>
@@ -72,6 +104,20 @@ function BookDetailsPage({ bookDetails }: { bookDetails: Book }) {
             <p className={classes["details-meta"]}>
               <strong>Published:</strong> {bookDetails.publicationYear}
             </p>
+
+            <div className={classes["details-rating"]}>
+              <strong>Rating:</strong>
+              <div
+                className={classes["rating-bar"]}
+                onClick={handleRatingClick}
+                style={{ cursor: "pointer" }}
+              >
+                <div
+                  className={classes["rating-fill"]}
+                  style={{ width: `${(rating / 5) * 100}%` }}
+                ></div>
+              </div>
+            </div>
           </div>
           <span className={classes["details-genre"]}>{bookDetails.genre}</span>
 

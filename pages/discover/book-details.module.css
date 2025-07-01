@@ -126,3 +126,24 @@
     max-width: 180px;
   }
 }
+
+.details-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating-bar {
+  width: 100px; 
+  height: 10px;
+  background-color: #e0e0e0; 
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.rating-fill {
+  height: 100%;
+  background-color: #ffc107;
+  transition: width 0.3s ease-in-out;
+}

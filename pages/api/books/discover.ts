@@ -5,11 +5,22 @@ import {
   deleteBook,
   getAvailableBooks,
   getBookById,
+  updateRating,
 } from "@book-tracker/helpers/api-utils";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { id } = req.query;
+
+  if (req.method === "PATCH") {
+    const { rating } = req.body;
+    if (id && typeof id === "string") {
+      const book = await updateRating(rating, +id);
+
+      return res.status(200).json({ message: "Rating updated successfully", book });
+    }
+  }
+
   if (req.method === "GET") {
-    const { id } = req.query;
     if (id && typeof id === "string") {
       const book: Book = await getBookById(+id);
       if (book) {
@@ -38,6 +49,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       genre,
       publicationYear,
       description,
+      rating: 0,
       image: "",
       isRead: false,
       completed: false,
@@ -52,8 +64,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "DELETE") {
-    const { id } = req.query;
-
     if (id && typeof id == "string") {
       const book: Book = await deleteBook(+id);
       res.status(200).json({ message: "Book removed successfully", book });
